@@ -1,5 +1,10 @@
+// Ensure the success screen is hidden when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("successScreen").classList.add("hidden");
+});
+
 // Moving "No" Button on Hover
-document.getElementById("noButton").addEventListener("mouseover", function() {
+document.getElementById("noButton").addEventListener("mouseover", function () {
     const button = this;
     const maxX = window.innerWidth - button.offsetWidth;
     const maxY = window.innerHeight - button.offsetHeight;
@@ -12,11 +17,11 @@ document.getElementById("noButton").addEventListener("mouseover", function() {
     button.style.top = newY + "px";
 });
 
-// When "Yes" is clicked
+// When "Yes" is clicked, show success screen and start confetti
 document.getElementById("yesButton").addEventListener("click", function () {
-    document.getElementById("mainContent").classList.add("hidden"); // Hide question
+    document.getElementById("mainContent").classList.add("hidden"); // Hide the question screen
     document.getElementById("successScreen").classList.remove("hidden"); // Show cat & confetti
-    startConfetti(); // Start confetti effect
+    startConfetti(); // Start the confetti effect
 });
 
 // Confetti Effect
@@ -33,37 +38,37 @@ function startConfetti() {
         confetti.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-            size: Math.random() * 8 + 2,
-            speed: Math.random() * 3 + 1
+            r: Math.random() * 6 + 2,
+            d: Math.random() * confettiCount,
+            color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+            tilt: Math.random() * 10,
+            tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+            tiltAngle: 0
         });
     }
 
     function drawConfetti() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         confetti.forEach((c) => {
-            ctx.fillStyle = c.color;
             ctx.beginPath();
-            ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+            ctx.fillStyle = c.color;
+            ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, false);
             ctx.fill();
         });
+
+        updateConfetti();
     }
 
     function updateConfetti() {
         confetti.forEach((c) => {
-            c.y += c.speed;
-            if (c.y > canvas.height) {
-                c.y = 0;
-                c.x = Math.random() * canvas.width;
-            }
+            c.y += Math.sin(c.d) + 1;
+            c.x += Math.cos(c.d);
+            c.tiltAngle += c.tiltAngleIncremental;
         });
+
+        requestAnimationFrame(drawConfetti);
     }
 
-    function animateConfetti() {
-        drawConfetti();
-        updateConfetti();
-        requestAnimationFrame(animateConfetti);
-    }
-
-    animateConfetti();
+    drawConfetti();
 }
