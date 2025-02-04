@@ -13,10 +13,10 @@ document.getElementById("noButton").addEventListener("mouseover", function() {
 });
 
 // When "Yes" is clicked
-document.getElementById("yesButton").addEventListener("click", function() {
-    document.getElementById("mainContent").classList.add("hidden");
-    document.getElementById("successScreen").classList.remove("hidden");
-    startConfetti();
+document.getElementById("yesButton").addEventListener("click", function () {
+    document.getElementById("mainContent").classList.add("hidden"); // Hide question
+    document.getElementById("successScreen").classList.remove("hidden"); // Show cat & confetti
+    startConfetti(); // Start confetti effect
 });
 
 // Confetti Effect
