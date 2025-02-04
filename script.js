@@ -1,6 +1,7 @@
-// Ensure the success screen is hidden when the page loads
+// Ensure the page starts on the question screen
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("successScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");  // Show question screen
+    document.getElementById("successScreen").classList.add("hidden");   // Hide success screen
 });
 
 // Moving "No" Button on Hover
@@ -17,11 +18,11 @@ document.getElementById("noButton").addEventListener("mouseover", function () {
     button.style.top = newY + "px";
 });
 
-// When "Yes" is clicked, show success screen and start confetti
+// When "Yes" is clicked, switch to success screen and show confetti
 document.getElementById("yesButton").addEventListener("click", function () {
-    document.getElementById("mainContent").classList.add("hidden"); // Hide the question screen
-    document.getElementById("successScreen").classList.remove("hidden"); // Show cat & confetti
-    startConfetti(); // Start the confetti effect
+    document.getElementById("mainContent").classList.add("hidden");    // Hide the question screen
+    document.getElementById("successScreen").classList.remove("hidden"); // Show the cat GIF
+    startConfetti(); // Start confetti animation
 });
 
 // Confetti Effect
@@ -69,6 +70,10 @@ function startConfetti() {
 
         requestAnimationFrame(drawConfetti);
     }
+
+    drawConfetti();
+}
+
 
     drawConfetti();
 }
