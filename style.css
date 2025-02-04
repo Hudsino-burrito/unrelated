@@ -6,20 +6,22 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
-/* Main content and success screen */
-#mainContent, #successScreen {
+/* Centered container for both screens */
+.screen {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* Buttons */
@@ -38,7 +40,7 @@ button:hover {
     background-color: #ff1493;
 }
 
-/* Hidden screen */
+/* Hide elements by default */
 .hidden {
     display: none;
 }
