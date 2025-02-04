@@ -1,7 +1,7 @@
-// Ensure the page starts on the question screen
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("mainContent").classList.remove("hidden");  // Show question screen
-    document.getElementById("successScreen").classList.add("hidden");   // Hide success screen
+    console.log("Page loaded! Hiding success screen."); // Debugging line
+    document.getElementById("mainContent").classList.remove("hidden");  
+    document.getElementById("successScreen").classList.add("hidden");   
 });
 
 // Moving "No" Button on Hover
@@ -20,9 +20,10 @@ document.getElementById("noButton").addEventListener("mouseover", function () {
 
 // When "Yes" is clicked, switch to success screen and show confetti
 document.getElementById("yesButton").addEventListener("click", function () {
-    document.getElementById("mainContent").classList.add("hidden");    // Hide the question screen
-    document.getElementById("successScreen").classList.remove("hidden"); // Show the cat GIF
-    startConfetti(); // Start confetti animation
+    console.log("Yes clicked! Showing success screen."); // Debugging line
+    document.getElementById("mainContent").classList.add("hidden");    
+    document.getElementById("successScreen").classList.remove("hidden"); 
+    startConfetti(); 
 });
 
 // Confetti Effect
