@@ -1,10 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Page loaded! Hiding success screen."); // Debugging line
-    document.getElementById("mainContent").classList.remove("hidden");  
-    document.getElementById("successScreen").classList.add("hidden");   
+    // Ensure only the start screen is visible at the beginning
+    document.getElementById("mainContent").classList.remove("hidden");
+    document.getElementById("successScreen").classList.add("hidden");
+
+    // iPhone Safari fix for autoplay audio
+    const bgMusic = document.getElementById("bgMusic");
+    document.body.addEventListener("click", function playAudio() {
+        bgMusic.play();
+        document.body.removeEventListener("click", playAudio); // Play once when interacted
+    });
 });
 
-// Moving "No" Button on Hover
+// Moving "No" Button on Hover (Safari-friendly)
 document.getElementById("noButton").addEventListener("mouseover", function () {
     const button = this;
     const maxX = window.innerWidth - button.offsetWidth;
@@ -13,17 +20,16 @@ document.getElementById("noButton").addEventListener("mouseover", function () {
     const newX = Math.random() * maxX;
     const newY = Math.random() * maxY;
 
-    button.style.position = "absolute";
+    button.style.position = "fixed"; // Works better on Safari
     button.style.left = newX + "px";
     button.style.top = newY + "px";
 });
 
-// When "Yes" is clicked, switch to success screen and show confetti
+// When "Yes" is clicked, switch to success screen
 document.getElementById("yesButton").addEventListener("click", function () {
-    console.log("Yes clicked! Showing success screen."); // Debugging line
-    document.getElementById("mainContent").classList.add("hidden");    
-    document.getElementById("successScreen").classList.remove("hidden"); 
-    startConfetti(); 
+    document.getElementById("mainContent").classList.add("hidden");
+    document.getElementById("successScreen").classList.remove("hidden");
+    startConfetti();
 });
 
 // Confetti Effect
@@ -74,3 +80,4 @@ function startConfetti() {
 
     drawConfetti();
 }
+
