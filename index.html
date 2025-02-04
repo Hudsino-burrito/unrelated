@@ -9,14 +9,16 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container" id="mainContent">
-        <h1>Will you be my Valentine? ❤️</h1>
-        <div class="buttons">
-            <button id="yesButton">Yes</button>
-            <button id="noButton">No</button>
-        </div>
-        <p id="responseText"></p>
-    </div>
+    <div id="mainContent">
+    <h1>Will you be my Valentine?</h1>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+</div>
+
+<div id="successScreen" class="hidden">
+    <img src="cute-cat.gif" alt="Cute Cat">
+    <canvas id="confettiCanvas"></canvas>
+</div>
 
     <!-- Hidden success screen -->
     <div id="successScreen" class="hidden">
