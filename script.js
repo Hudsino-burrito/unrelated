@@ -73,7 +73,3 @@ function startConfetti() {
 
     drawConfetti();
 }
-
-
-    drawConfetti();
-}
